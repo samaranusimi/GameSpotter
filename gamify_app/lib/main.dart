@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamify_app/pages/home_page.dart';
+import 'package:gamify_app/pages/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Gamify',
-      theme: ThemeData(brightness: Brightness.dark),
-      home: HomePage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Gamify',
+        theme: ThemeData(brightness: Brightness.dark),
+        home: SplashScreen());
   }
 }
