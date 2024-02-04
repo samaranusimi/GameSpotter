@@ -73,7 +73,13 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        children: [_topBar(), _featuredGamesInfo()],
+        children: [
+          _topBar(),
+          SizedBox(
+            height: _deviceHeight * 0.13,
+          ),
+          _featuredGamesInfo()
+        ],
       ),
     );
   }
@@ -117,7 +123,34 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.max,
-        children: [Text(featuredGames[selectedGame].title)],
+        children: [
+          Text(
+            featuredGames[selectedGame].title,
+            maxLines: 2,
+            style:
+                TextStyle(color: Colors.white, fontSize: _deviceHeight * 0.04),
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.0009,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: featuredGames.map((_game) {
+              double _circleRadius = _deviceHeight * 0.002;
+              bool _isActive = _game.title == featuredGames[selectedGame].title;
+              return Container(
+                margin: EdgeInsets.only(right: _deviceWidth * 0.015),
+                height: _circleRadius * 2,
+                width: _circleRadius * 2,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: _isActive ? Colors.blueGrey : Colors.grey),
+              );
+            }).toList(),
+          )
+        ],
       ),
     );
   }
