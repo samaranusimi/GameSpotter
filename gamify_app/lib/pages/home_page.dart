@@ -8,10 +8,17 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-var _deviceHeight;
-var _deviceWidth;
-
 class _HomePageState extends State<HomePage> {
+  var _deviceHeight;
+  var _deviceWidth;
+  var selectedGame;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedGame = 0;
+  }
+
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
@@ -27,14 +34,19 @@ class _HomePageState extends State<HomePage> {
         height: _deviceHeight * 0.50,
         width: _deviceWidth,
         child: PageView(
+            onPageChanged: (index) {
+              setState(() {
+                selectedGame = index;
+              });
+            },
             children: featuredGames.map((game) {
-          return Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(game.coverImage.url),
-                    fit: BoxFit.cover)),
-          );
-        }).toList()));
+              return Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(game.coverImage.url),
+                        fit: BoxFit.cover)),
+              );
+            }).toList()));
   }
 
   Widget _gradientBox() {
@@ -61,7 +73,7 @@ class _HomePageState extends State<HomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
-        children: [_topBar()],
+        children: [_topBar(), _featuredGamesInfo()],
       ),
     );
   }
@@ -93,6 +105,19 @@ class _HomePageState extends State<HomePage> {
             ],
           )
         ],
+      ),
+    );
+  }
+
+  Widget _featuredGamesInfo() {
+    return SizedBox(
+      height: _deviceHeight * 0.12,
+      width: _deviceWidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [Text(featuredGames[selectedGame].title)],
       ),
     );
   }
