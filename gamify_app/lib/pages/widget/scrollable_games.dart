@@ -23,7 +23,7 @@ class ScrollableGames extends StatelessWidget {
             return Container(
               height: _height,
               width: _width * 0.3,
-              padding: EdgeInsets.only(right: _width * 0.03),
+              padding: EdgeInsets.only(right: _width * 0.013),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,12 +38,14 @@ class ScrollableGames extends StatelessWidget {
                             fit: BoxFit.cover,
                             image: NetworkImage(_game.coverImage.url))),
                   ),
-                  Text(
-                    _game.title,
-                    maxLines: 2,
-                    style: TextStyle(
-                        color: Colors.white, fontSize: _height * 0.07),
-                  )
+                  _showTitle
+                      ? Text(
+                          _game.title,
+                          maxLines: 2,
+                          style: TextStyle(
+                              color: Colors.white, fontSize: _height * 0.07),
+                        )
+                      : Container()
                 ],
               ),
             );
