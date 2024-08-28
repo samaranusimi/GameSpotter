@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gamify_app/pages/widget/scrollable_games.dart';
+import 'package:gamespotter/pages/widget/scrollable_games.dart';
+
 import './/data.dart';
 
 class HomePage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gamify_app/pages/splash.dart';
+import 'package:gamespotter/pages/splash.dart';
 
 void main() {
   runApp(const MyApp());
